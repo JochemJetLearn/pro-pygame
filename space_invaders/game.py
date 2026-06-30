@@ -15,13 +15,13 @@ bulletspeed = 250
 
 pygame.display.set_caption("Space Invaders")
 
-bg = pygame.image.load("Python_Pro_Game_Dev/space_invaders/bg.png")
+bg = pygame.image.load("Python_Pro_Game_Dev/space_invaders 2/bg.png")
 
-red = pygame.image.load("Python_Pro_Game_Dev/space_invaders/red.png")
+red = pygame.image.load("Python_Pro_Game_Dev/space_invaders 2/red.png")
 redship = pygame.transform.rotate(pygame.transform.scale(red, (50, 50)), 90)
 redhealth = 10
 
-yellow = pygame.image.load("Python_Pro_Game_Dev/space_invaders/yellow.png")
+yellow = pygame.image.load("Python_Pro_Game_Dev/space_invaders 2/yellow.png")
 yellowship = pygame.transform.rotate(pygame.transform.scale(yellow, (50, 50)), 270)
 yellowhealth = 10
 
@@ -88,6 +88,7 @@ def movement(dt):
         redrect.x += dt*playerspeed
 
 def main():
+    
     while True:
         dt = clock.tick(60) / 1000
         for event in pygame.event.get():
@@ -118,9 +119,17 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    return
         screen.fill(color)
         screen.blit(text, (400, 275))
         pygame.display.flip()
         
-
-main()
+while True:
+    main()
+    redhealth = 10
+    yellowhealth = 10
+    yellowrect = pygame.Rect(WIDTH-50, HEIGHT//2, 50, 50)
+    redrect = pygame.Rect(0, HEIGHT//2, 50, 50)
+    bullets = []
